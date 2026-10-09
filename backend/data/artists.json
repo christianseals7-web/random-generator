@@ -1,0 +1,17 @@
+[
+  { "name": "Kendrick Lamar", "genre": "Hip-Hop" },
+  { "name": "Drake", "genre": "Hip-Hop" },
+  { "name": "J. Cole", "genre": "Hip-Hop" },
+  { "name": "Taylor Swift", "genre": "Pop" },
+  { "name": "Dua Lipa", "genre": "Pop" },
+  { "name": "The Weeknd", "genre": "Pop" },
+  { "name": "SZA", "genre": "R&B" },
+  { "name": "Frank Ocean", "genre": "R&B" },
+  { "name": "Daniel Caesar", "genre": "R&B" },
+  { "name": "Foo Fighters", "genre": "Rock" },
+  { "name": "Arctic Monkeys", "genre": "Rock" },
+  { "name": "Paramore", "genre": "Rock" },
+  { "name": "Morgan Wallen", "genre": "Country" },
+  { "name": "Zach Bryan", "genre": "Country" },
+  { "name": "Chris Stapleton", "genre": "Country" }
+]

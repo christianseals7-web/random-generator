@@ -1,0 +1,18 @@
+[
+  { "name": "Jacksonville Jaguars", "league": "NFL" },
+  { "name": "Tampa Bay Buccaneers", "league": "NFL" },
+  { "name": "Kansas City Chiefs", "league": "NFL" },
+  { "name": "Dallas Cowboys", "league": "NFL" },
+  { "name": "Orlando Magic", "league": "NBA" },
+  { "name": "Miami Heat", "league": "NBA" },
+  { "name": "Boston Celtics", "league": "NBA" },
+  { "name": "Los Angeles Lakers", "league": "NBA" },
+  { "name": "Tampa Bay Rays", "league": "MLB" },
+  { "name": "Miami Marlins", "league": "MLB" },
+  { "name": "New York Yankees", "league": "MLB" },
+  { "name": "Los Angeles Dodgers", "league": "MLB" },
+  { "name": "Florida Panthers", "league": "NHL" },
+  { "name": "Tampa Bay Lightning", "league": "NHL" },
+  { "name": "Boston Bruins", "league": "NHL" },
+  { "name": "Edmonton Oilers", "league": "NHL" }
+]

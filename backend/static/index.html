@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Generator</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Random Generator</h1>
+    <p>Pick a category and hit generate.</p>
+  </header>
+
+  <main class="cards">
+    <section class="card">
+      <h2>Number</h2>
+      <div class="inputs">
+        <label>Min <input type="number" id="num-min" value="1"></label>
+        <label>Max <input type="number" id="num-max" value="100"></label>
+      </div>
+      <button id="num-btn">Generate</button>
+      <p class="result" id="num-result">?</p>
+    </section>
+
+    <section class="card">
+      <h2>Sports Team</h2>
+      <div class="inputs">
+        <label>League
+          <select id="team-league">
+            <option value="">Any</option>
+            <option value="NFL">NFL</option>
+            <option value="NBA">NBA</option>
+            <option value="MLB">MLB</option>
+            <option value="NHL">NHL</option>
+          </select>
+        </label>
+      </div>
+      <button id="team-btn">Generate</button>
+      <p class="result" id="team-result">?</p>
+    </section>
+
+    <section class="card">
+      <h2>Music Artist</h2>
+      <div class="inputs">
+        <label>Genre
+          <select id="artist-genre">
+            <option value="">Any</option>
+            <option value="Hip-Hop">Hip-Hop</option>
+            <option value="Pop">Pop</option>
+            <option value="R&B">R&amp;B</option>
+            <option value="Rock">Rock</option>
+            <option value="Country">Country</option>
+          </select>
+        </label>
+      </div>
+      <button id="artist-btn">Generate</button>
+      <p class="result" id="artist-result">?</p>
+    </section>
+  </main>
+</body>
+</html>
