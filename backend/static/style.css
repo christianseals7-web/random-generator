@@ -98,3 +98,20 @@ button:hover {
   font-weight: 400;
   color: #f87171;
 }
+.detail {
+  margin: -8px 0 0;
+  min-height: 1.2rem;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  text-align: center;
+}
+
+label.checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+label.checkbox input {
+  width: auto;
+}

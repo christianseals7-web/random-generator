@@ -34,11 +34,25 @@
             <option value="NBA">NBA</option>
             <option value="MLB">MLB</option>
             <option value="NHL">NHL</option>
+            <option value="NCAAF">College Football</option>
+            <option value="NCAAB">College Basketball</option>
+          </select>
+        </label>
+        <label>Region
+          <select id="team-region">
+            <option value="">Any</option>
+            <option value="Northeast">Northeast</option>
+            <option value="Southeast">Southeast</option>
+            <option value="Midwest">Midwest</option>
+            <option value="Southwest">Southwest</option>
+            <option value="West">West</option>
+            <option value="Canada">Canada</option>
           </select>
         </label>
       </div>
       <button id="team-btn">Generate</button>
       <p class="result" id="team-result">?</p>
+      <p class="detail" id="team-detail"></p>
     </section>
 
     <section class="card">
@@ -50,13 +64,40 @@
             <option value="Hip-Hop">Hip-Hop</option>
             <option value="Pop">Pop</option>
             <option value="R&B">R&amp;B</option>
+            <option value="Latin">Latin</option>
             <option value="Rock">Rock</option>
             <option value="Country">Country</option>
+            <option value="Electronic">Electronic</option>
+            <option value="K-Pop">K-Pop</option>
+            <option value="Indian">Indian</option>
           </select>
         </label>
       </div>
       <button id="artist-btn">Generate</button>
       <p class="result" id="artist-result">?</p>
+      <p class="detail" id="artist-detail"></p>
+    </section>
+
+    <section class="card">
+      <h2>Restaurant</h2>
+      <div class="inputs">
+        <label>Region
+          <select id="food-region">
+            <option value="">Anywhere</option>
+            <option value="Northeast">Northeast</option>
+            <option value="Southeast">Southeast</option>
+            <option value="Midwest">Midwest</option>
+            <option value="Southwest">Southwest</option>
+            <option value="West">West</option>
+          </select>
+        </label>
+      </div>
+      <label class="checkbox">
+        <input type="checkbox" id="food-regional"> Regional chains only
+      </label>
+      <button id="food-btn">Generate</button>
+      <p class="result" id="food-result">?</p>
+      <p class="detail" id="food-detail"></p>
     </section>
   </main>
 </body>

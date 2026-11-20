@@ -8,11 +8,26 @@ app = FastAPI(title="Random Generator API")
 
 DATA_DIR = Path(__file__).parent / "data"
 
-with open(DATA_DIR / "teams.json") as f:
-    TEAMS = json.load(f)
 
-with open(DATA_DIR / "artists.json") as f:
-    ARTISTS = json.load(f)
+def load(filename):
+    with open(DATA_DIR / filename, encoding="utf-8") as f:
+        return json.load(f)
+
+
+TEAMS = load("teams.json")
+ARTISTS = load("artists.json")
+RESTAURANTS = load("restaurants.json")
+
+
+def same(a, b):
+    return a.lower() == b.lower()
+
+
+def pick(items, what):
+    if not items:
+        raise HTTPException(status_code=404, detail=f"No {what} match those filters")
+    return random.choice(items)
+
 
 @app.get("/api/random/number")
 def random_number(min: int = 1, max: int = 100):
@@ -21,28 +36,42 @@ def random_number(min: int = 1, max: int = 100):
     result = random.randint(min, max)
     return {"min": min, "max": max, "result": result}
 
+
 @app.get("/api/random/team")
-def random_team(league: str | None = None):
+def random_team(league: str | None = None, region: str | None = None):
     teams = TEAMS
 
     if league:
-        teams = [team for team in TEAMS if team["league"].lower() == league.lower()]
+        teams = [t for t in teams if same(t["league"], league)]
+    if region:
+        teams = [t for t in teams if same(t["region"], region)]
 
-    if not teams:
-        raise HTTPException(status_code=404, detail=f"No teams found for league '{league}'")
+    return pick(teams, "teams")
 
-    return random.choice(teams)
 
 @app.get("/api/random/artist")
 def random_artist(genre: str | None = None):
     artists = ARTISTS
 
     if genre:
-        artists = [artist for artist in ARTISTS if artist["genre"].lower() == genre.lower()]
+        artists = [a for a in artists if same(a["genre"], genre)]
 
-    if not artists:
-        raise HTTPException(status_code=404, detail=f"No artists found for genre '{genre}'")
+    return pick(artists, "artists")
 
-    return random.choice(artists)
+
+@app.get("/api/random/restaurant")
+def random_restaurant(region: str | None = None, regional_only: bool = False):
+    restaurants = RESTAURANTS
+
+    if regional_only:
+        restaurants = [r for r in restaurants if "National" not in r["regions"]]
+    if region:
+        restaurants = [
+            r for r in restaurants
+            if "National" in r["regions"] or any(same(x, region) for x in r["regions"])
+        ]
+
+    return pick(restaurants, "restaurants")
+
 
 app.mount("/", StaticFiles(directory=Path(__file__).parent / "static", html=True), name="static")

@@ -1,4 +1,4 @@
-async function callApi(path, params, resultEl, formatResult) {
+async function callApi(path, params, resultEl, detailEl, formatResult) {
   const query = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {
     if (value !== "") {
@@ -8,6 +8,7 @@ async function callApi(path, params, resultEl, formatResult) {
 
   resultEl.textContent = "...";
   resultEl.classList.remove("error");
+  if (detailEl) detailEl.textContent = "";
 
   try {
     const response = await fetch(`${path}?${query}`);
@@ -19,39 +20,59 @@ async function callApi(path, params, resultEl, formatResult) {
       return;
     }
 
-    resultEl.textContent = formatResult(data);
+    const [main, detail] = formatResult(data);
+    resultEl.textContent = main;
+    if (detailEl) detailEl.textContent = detail;
   } catch (err) {
     resultEl.classList.add("error");
     resultEl.textContent = "Couldn't reach the server";
   }
 }
 
-document.getElementById("num-btn").addEventListener("click", () => {
+const $ = (id) => document.getElementById(id);
+
+$("num-btn").addEventListener("click", () => {
   callApi(
     "/api/random/number",
-    {
-      min: document.getElementById("num-min").value,
-      max: document.getElementById("num-max").value,
-    },
-    document.getElementById("num-result"),
-    (data) => data.result
+    { min: $("num-min").value, max: $("num-max").value },
+    $("num-result"),
+    null,
+    (data) => [data.result, ""]
   );
 });
 
-document.getElementById("team-btn").addEventListener("click", () => {
+$("team-btn").addEventListener("click", () => {
   callApi(
     "/api/random/team",
-    { league: document.getElementById("team-league").value },
-    document.getElementById("team-result"),
-    (data) => data.name
+    { league: $("team-league").value, region: $("team-region").value },
+    $("team-result"),
+    $("team-detail"),
+    (data) => [
+      data.name,
+      [data.league, data.conference, data.state].filter(Boolean).join(" · "),
+    ]
   );
 });
 
-document.getElementById("artist-btn").addEventListener("click", () => {
+$("artist-btn").addEventListener("click", () => {
   callApi(
     "/api/random/artist",
-    { genre: document.getElementById("artist-genre").value },
-    document.getElementById("artist-result"),
-    (data) => data.name
+    { genre: $("artist-genre").value },
+    $("artist-result"),
+    $("artist-detail"),
+    (data) => [data.name, `${data.genre} · #${data.rank} most streamed on Spotify`]
+  );
+});
+
+$("food-btn").addEventListener("click", () => {
+  callApi(
+    "/api/random/restaurant",
+    {
+      region: $("food-region").value,
+      regional_only: $("food-regional").checked ? "true" : "",
+    },
+    $("food-result"),
+    $("food-detail"),
+    (data) => [data.name, `${data.category} · ${data.regions.join(", ")}`]
   );
 });
